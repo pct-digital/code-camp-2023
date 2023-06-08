@@ -1,0 +1,65 @@
+{
+  "name": "kk-easy-pay-server",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/kk-easy-pay/server/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/kk-easy-pay/server",
+        "main": "apps/kk-easy-pay/server/src/main.ts",
+        "tsConfig": "apps/kk-easy-pay/server/tsconfig.app.json",
+        "assets": ["apps/kk-easy-pay/server/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/kk-easy-pay/server/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "kk-easy-pay-server:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "kk-easy-pay-server:build:development",
+          "runtimeArgs": ["--port", "4200", "--ip", "127.0.0.1"]
+        },
+        "production": {
+          "buildTarget": "kk-easy-pay-server:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/kk-easy-pay/server/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/kk-easy-pay/server/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,7 +1,12 @@
 {
   "recommendations": [
-    
+    "angular.ng-template",
+    "cyrilletuzi.angular-schematics",
+    "usernamehw.errorlens",
     "nrwl.angular-console",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "firsttris.vscode-jest-runner",
+    "ms-vsliveshare.vsliveshare"
   ]
 }

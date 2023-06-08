@@ -1,0 +1,99 @@
+{
+  "name": "kk-easy-pay-angular",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "pct",
+  "sourceRoot": "apps/kk-easy-pay/angular/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/kk-easy-pay/angular",
+        "index": "apps/kk-easy-pay/angular/src/index.html",
+        "main": "apps/kk-easy-pay/angular/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/kk-easy-pay/angular/tsconfig.app.json",
+        "assets": [
+          "apps/kk-easy-pay/angular/src/favicon.ico",
+          "apps/kk-easy-pay/angular/src/assets"
+        ],
+        "styles": ["apps/kk-easy-pay/angular/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "port": 3000,
+        "proxyConfig": "apps/kk-easy-pay/angular/proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "kk-easy-pay-angular:build:production"
+        },
+        "development": {
+          "browserTarget": "kk-easy-pay-angular:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "kk-easy-pay-angular:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/kk-easy-pay/angular/**/*.ts",
+          "apps/kk-easy-pay/angular/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/kk-easy-pay/angular/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  }
+}
