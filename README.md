@@ -1,3 +1,43 @@
+# Laptop Setup
+
+### Install Node 18 via NVM
+
+`https://github.com/nvm-sh/nvm#install--update-script`
+`https://github.com/nvm-sh/nvm#usage`
+
+### Install Docker
+
+`https://raw.githubusercontent.com/pct-digital/edu-hub/develop/docker_install.sh`
+
+### Setup a postgres instance in a docker container
+
+`docker run -d --name postgres_dev --restart=unless-stopped -p 6543:5432 -e POSTGRES_USER=dev -e POSTGRES_PASSWORD=dev -e POSTGRES_DB=dev postgres:15-alpine`
+
+`docker ps`
+
+`docker logs -f postgres_dev`
+
+`docker stop postgres_dev`
+
+`docker start postgres_dev`
+
+### Run SQL shell on your postgres instance
+
+`docker exec -ti postgres_dev psql -h 127.0.0.1 dev dev`
+
+### Reset the database
+
+1. Run SQL shell as described above
+1. Copy paste content of your reset.sql into it to run it
+
+### Start the development frontend
+
+`npx nx run kk-easy-pay-angular:serve`
+
+### Start the development server
+
+`npx nx run kk-easy-pay-server:serve`
+
 # Code Camp Overview
 
 Freitag:
