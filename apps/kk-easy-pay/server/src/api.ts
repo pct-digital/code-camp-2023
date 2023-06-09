@@ -12,7 +12,4 @@ export class ApiHandlers {
 
     res.json(pakete);
   }
-
-  // This call must only have public functions that have exactly the two req and res parameters!
-  // private helper functions are allowed!
 }

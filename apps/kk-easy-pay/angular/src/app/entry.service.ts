@@ -10,8 +10,11 @@ export class EntryService {
   constructor(private http: HttpClient) {}
 
   async listPakete() {
-    return await firstValueFrom(
+    const response = firstValueFrom(
       this.http.get<LeistungsPaket[]>('/api/listpakete')
     );
+
+    const result = await response;
+    return result;
   }
 }
